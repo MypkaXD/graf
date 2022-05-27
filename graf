@@ -1,0 +1,72 @@
+#include <iostream>
+#include <queue> // очередь
+#include <stack> // стек
+using namespace std;
+struct Edge {
+	int begin;
+	int end;
+};
+int main()
+{
+	queue<int> Queue;
+	stack<Edge> Edges;
+	int req;
+	Edge e;
+	bool** matrix;
+	matrix = new bool* [7];
+	for (int count = 0; count < 7; count++) {
+		matrix[count] = new bool[7];
+	}
+
+	for (int count = 0; count < 7; count++) {
+		for (int COUNT = 0; COUNT < 7; COUNT++) {
+			std::cin >> matrix[count][COUNT];
+		}
+	}
+
+	for (int count = 0; count < 7; count++) {
+		for (int COUNT = 0; COUNT < 7; COUNT++) {
+			std::cout << matrix[count][COUNT] << "\t";
+		}
+		std::cout << std::endl;
+	}
+	int nodes[7];
+	for (int i = 0; i < 7; i++)
+		nodes[i] = 0;
+	cout << "N = "; cin >> req; req--;
+	Queue.push(0);
+	while (!Queue.empty())
+	{
+		int node = Queue.front();
+		Queue.pop();
+		nodes[node] = 2; 
+		for (int j = 0; j < 7; j++)
+		{
+			if (matrix[node][j] == 1 && nodes[j] == 0)
+			{
+				Queue.push(j);
+				nodes[j] = 1;
+				e.begin = node; e.end = j;
+				Edges.push(e);
+				if (node == req) break;
+			}
+		}
+		cout << node + 1 << endl;
+	}
+	cout << "Путь до вершины " << req + 1 << endl;
+	cout << req + 1;
+	while (!Edges.empty()) {
+		e = Edges.top();
+		Edges.pop();
+		if (e.end == req) {
+			req = e.begin;
+			cout << " <- " << req + 1;
+		}
+	}
+	for (int count = 0; count < 7; count++) {
+		delete[] matrix[count];
+	}
+	delete[] matrix;
+	cin.get(); cin.get();
+	return 0;
+}
