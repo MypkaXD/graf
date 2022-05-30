@@ -8,30 +8,31 @@ struct Edge {
 };
 int main()
 {
+	setlocale(LC_ALL, "rus");
 	queue<int> Queue;
 	stack<Edge> Edges;
 	int req;
 	Edge e;
 	bool** matrix;
-	matrix = new bool* [7];
-	for (int count = 0; count < 7; count++) {
-		matrix[count] = new bool[7];
+	matrix = new bool* [3];
+	for (int count = 0; count < 3; count++) {
+		matrix[count] = new bool[3];
 	}
 
-	for (int count = 0; count < 7; count++) {
-		for (int COUNT = 0; COUNT < 7; COUNT++) {
+	for (int count = 0; count < 3; count++) {
+		for (int COUNT = 0; COUNT < 3; COUNT++) {
 			std::cin >> matrix[count][COUNT];
 		}
 	}
 
-	for (int count = 0; count < 7; count++) {
-		for (int COUNT = 0; COUNT < 7; COUNT++) {
+	for (int count = 0; count < 3; count++) {
+		for (int COUNT = 0; COUNT < 3; COUNT++) {
 			std::cout << matrix[count][COUNT] << "\t";
 		}
 		std::cout << std::endl;
 	}
-	int nodes[7];
-	for (int i = 0; i < 7; i++)
+	int nodes[3];
+	for (int i = 0; i < 3; i++)
 		nodes[i] = 0;
 	cout << "N = "; cin >> req; req--;
 	Queue.push(0);
@@ -40,7 +41,7 @@ int main()
 		int node = Queue.front();
 		Queue.pop();
 		nodes[node] = 2; 
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < 3; j++)
 		{
 			if (matrix[node][j] == 1 && nodes[j] == 0)
 			{
@@ -63,7 +64,7 @@ int main()
 			cout << " <- " << req + 1;
 		}
 	}
-	for (int count = 0; count < 7; count++) {
+	for (int count = 0; count < 3; count++) {
 		delete[] matrix[count];
 	}
 	delete[] matrix;
